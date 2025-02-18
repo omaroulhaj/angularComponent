@@ -1,0 +1,108 @@
+/* Style pour les boutons avec des icônes uniquement en contour */
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #ccc; /* Border couleur */
+  color: #ccc; /* Couleur du texte et de l'icône */
+  transition: all 0.3s ease;
+}
+
+
+.container {
+  max-width: 1200px;
+}
+
+.large-icon {
+  font-size: 25px; /* Ajustez la taille selon le besoin */
+  max-width: 26px;
+  max-height: 26px;
+}
+
+/* Barre de recherche */
+.search-and-add-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.input-group {
+  max-width: 450px;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.input-group:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.input-group-text {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.input-group .form-control {
+  border: none;
+  font-size: 14px;
+  border: 1px solid #007bff;
+  padding: 10px;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+}
+
+/* Boutons */
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #ccc;
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: #f8f9fa;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.btn-primary {
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.btn-primary mat-icon {
+  font-size: 20px;
+}
+
+/* Icônes */
+mat-icon {
+  font-size: 22px;
+  vertical-align: middle;
+}
+
+/* Table */
+.table-responsive {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.table th, .table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transition: background-color 0.3s ease;
+}

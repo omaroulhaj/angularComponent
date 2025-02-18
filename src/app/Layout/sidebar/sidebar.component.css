@@ -1,0 +1,72 @@
+.sidebar {
+  width: 240px;
+  transition: width 0.3s ease-in-out;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: background 0.3s;
+  text-align: left;
+}
+
+.sidebar .nav-link i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.collapsed .nav-link {
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar.collapsed .nav-link i {
+  margin-right: 0;
+  margin-bottom: 5px;
+}
+
+.sidebar.collapsed .link-text {
+  display: none;
+}
+
+.toggle-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s;
+}
+
+.sidebar.collapsed .toggle-btn {
+  transform: rotate(180deg);
+}
+
+.logout {
+  margin-top: auto;
+  padding: 15px;
+}
+
+.logout .nav-link {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+.main-container {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+  height: 100vh;
+  gap: 0; 
+}
+
+/* Sidebar */
+app-sidebar {
+  padding: 10px; 
+}
+
+/* Contenu principal */
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 10px; 
+}
+
+/* Navbar */
+app-navbar {
+  padding: 10px;
+  margin-bottom: 10px; /* Espacement uniforme en bas */
+}

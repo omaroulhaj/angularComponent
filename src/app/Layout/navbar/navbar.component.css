@@ -1,0 +1,49 @@
+.custom-navbar {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    border-radius: 12px; /* Coins arrondis pour un effet moderne */
+    max-width: 98%; /* Pour éviter qu'elle ne touche les bords */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+  }
+  
+  /* Animation au survol */
+  .navbar-brand {
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .navbar-brand:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Liens stylés */
+  .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 15px;
+    transition: color 0.3s, transform 0.2s;
+    border-radius: 8px; /* Arrondi léger sur les liens */
+  }
+  
+  /* Effet dynamique au survol */
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: #ffeb3b !important; /* Jaune lumineux */
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+  
+  /* Mode sombre */
+  .dark-mode .custom-navbar {
+    background: #222;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark-mode .nav-link {
+    color: #ddd !important;
+  }
+  
+  .dark-mode .nav-link:hover {
+    color: #ffeb3b !important;
+  }
+  

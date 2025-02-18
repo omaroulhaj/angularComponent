@@ -1,0 +1,42 @@
+ <!-- Sidebar -->
+ <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar bg-dark text-white p-3" [ngClass]="{'collapsed': isSidebarCollapsed}">
+        <!-- Bouton de toggle -->
+        <div class="sidebar-header text-center mb-3">
+            <button class="toggle-btn" (click)="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+
+        <!-- Menu des liens -->
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-house-door"></i>
+                    <span class="link-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-file-earmark"></i>
+                    <span class="link-text">Components</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-gear"></i>
+                    <span class="link-text">Settings</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Bouton Logout -->
+        <div class="logout text-center mt-auto">
+            <a class="nav-link text-danger" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="link-text">Logout</span>
+            </a>
+        </div>
+    </div>
+</div>

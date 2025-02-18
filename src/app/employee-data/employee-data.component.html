@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- Icône et Titre -->
+    <h2 class="fw-bold text-primary d-flex align-items-center">
+      <mat-icon class="me-2 large-icon">work</mat-icon> Employee Management
+    </h2>
+  </div>
+
+  <div class="search-and-add-container d-flex justify-content-between align-items-center p-3">
+    <!-- Barre de recherche avancée -->
+    <div class="input-group">
+      <span class="input-group-text"><mat-icon>search</mat-icon></span>
+      <input type="text" class="form-control search-no-focus" placeholder="Search by name, email, etc." [(ngModel)]="searchQuery" (input)="onSearchChange()">
+    </div>
+
+    <!-- Bouton Ajouter un employé -->
+    <button mat-raised-button color="primary" class="btn btn-primary shadow d-flex align-items-center" (click)="openEmployeeDialog()">
+      <mat-icon class="me-1">person_add</mat-icon> Add Employee
+    </button>
+  </div>
+
+  <!-- Table responsive -->
+  <div class="table-responsive shadow-sm rounded mt-3">
+    <table class="table table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact No</th>
+          <th>City</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of filteredEmployees; let i = index">
+          <td class="fw-bold">{{ i + 1 }}</td>
+          <td>{{ emp.firstName }}</td>
+          <td>{{ emp.lastName }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.contactNo }}</td>
+          <td>{{ emp.city }}</td>
+          <td>{{ emp.address }}</td>
+          <td>
+            <button mat-icon-button color="accent" class="btn btn-outline text-warning me-2 shadow-sm"
+              (click)="openEmployeeDialog(emp)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" class="btn btn-outline text-danger shadow-sm"
+              (click)="deleteEmployee(emp.employeeId)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

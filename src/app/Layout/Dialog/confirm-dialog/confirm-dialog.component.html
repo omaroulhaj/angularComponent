@@ -1,0 +1,23 @@
+<div class="my-custom-dialog">
+  <div class="dialog-container">
+    <button mat-icon-button class="close-btn" (click)="closeDialog(false)">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <div class="icon-container">
+      <mat-icon class="danger-icon">error_outline</mat-icon>
+    </div>
+
+    <div class="dialog-content-wrapper p-0 m-0">
+      <h3 mat-dialog-title class="dialog-title mt-0">Are you sure?</h3>
+      <mat-dialog-content class="dialog-content">
+        <p>You won't be able to revert this!</p>
+      </mat-dialog-content>
+
+      <mat-dialog-actions class="dialog-actions">
+        <button mat-button class="cancel-btn" (click)="closeDialog(false)">Cancel</button>
+        <button mat-button class="delete-btn" (click)="closeDialog(true)">Yes, delete it!</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

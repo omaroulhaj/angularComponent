@@ -1,0 +1,141 @@
+/* Style pour la boîte de dialogue */
+.mat-dialog-content,
+.my-custom-dialog .dialog-container {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Actions du dialog */
+.mat-dialog-actions,
+.my-custom-dialog .dialog-actions {
+  padding: 16px 20px;
+  background-color: #f1f1f1;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Titre */
+h3, .dialog-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+/* Bouton de fermeture */
+.close-btn {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #555;
+}
+
+/* Style des boutons */
+button.mat-button, .cancel-btn, .delete-btn, .btn-success {
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+/* Boutons de suppression et d'annulation */
+.cancel-btn {
+  background-color: #d9534f;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c9302c;
+}
+
+.delete-btn {
+  background-color: #0275d8;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #025aa5;
+}
+
+.btn-success {
+  background-color: #179c41;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #007525;
+}
+
+/* Icône danger */
+.icon-container mat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  color: #dc3545;
+}
+
+/* Champs de formulaire dans le modal */
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field .mat-label {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.mat-input-element {
+  border-radius: 8px;
+}
+
+/* Disposition en deux colonnes pour le formulaire */
+@media (min-width: 768px) {
+  .row .col-md-6 {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Style personnalisé pour le bouton */
+.btn-custom {
+  background-color: #28a745;  /* Vert personnalisé */
+  color: white;  /* Couleur du texte en blanc */
+  font-size: 1rem;  /* Taille du texte */
+  border-radius: 5px;  /* Coins arrondis */
+  padding: 7px 10px;  /* Espacement interne */
+  border: none;  /* Supprimer la bordure par défaut */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Style de l'icône dans le bouton */
+.btn-custom i {
+  margin-right: 8px;  /* Espacement entre l'icône et le texte */
+}
+
+/* Effet de survol (hover) */
+.btn-custom:hover {
+  background-color: #218838;  /* Une nuance plus sombre de vert */
+  cursor: pointer;  /* Change le curseur pour indiquer que c'est cliquable */
+}
+
+/* Désactiver le bouton (lorsqu'il est désactivé) */
+.btn-custom:disabled {
+  background-color: #6c757d;  /* Couleur grise lorsque désactivé */
+  cursor: not-allowed;
+}
