@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 interface Employee {
   employeeId: number;
@@ -22,24 +24,35 @@ interface Employee {
 @Component({
   selector: 'app-employee-data',
   standalone: true,
-  imports: [ CommonModule,
-    FormsModule,              
+  imports: [
+    CommonModule,
+    FormsModule,
     MatDialogModule,
     MatIconModule,
-    MatFormFieldModule,      
-    MatInputModule],
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginator,
+    MatAutocompleteModule
+  ],
   templateUrl: './employee-data.component.html',
-  styleUrls: ['./employee-data.component.css']
+  styleUrls: ['./employee-data.component.css'],
 })
 export class EmployeeDataComponent implements OnInit {
-
   http = inject(HttpClient);
   constructor(private dialog: MatDialog) {}
 
+  // Variables pour suivre l'ordre de tri
+  sortOrder: { firstName: boolean, lastName: boolean } = { firstName: true, lastName: true };
+
   employees: Employee[] = [];
-  filteredEmployees: Employee[] = []; // Tableaux pour les employés filtrés
+  filteredEmployees: Employee[] = [];
   apiUrl = 'https://localhost:7290/api/EmployeeMaster';
-  searchQuery: string = ''; // Variable pour la recherche
+  searchQuery: string = '';
+  pageSize: number = 6; // Nombre d'employés par page
+  pageIndex: number = 0;
+
+  // Propriété pour gérer les toasts
+  toasts: { title: string, message: string, icon: string, isVisible: boolean }[] = [];
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -50,7 +63,7 @@ export class EmployeeDataComponent implements OnInit {
     this.http.get<Employee[]>(this.apiUrl).subscribe({
       next: (data) => {
         this.employees = data;
-        this.filteredEmployees = data; // Initialiser les employés filtrés
+        this.filteredEmployees = data;
       },
       error: (error) => {
         console.error('Error loading employees:', error);
@@ -58,14 +71,34 @@ export class EmployeeDataComponent implements OnInit {
     });
   }
 
+  /** Méthode pour trier les employés par prénom */
+  sortByFirstName() {
+    this.sortOrder.firstName = !this.sortOrder.firstName; // Alterner l'ordre
+    this.filteredEmployees.sort((a, b) => this.sortOrder.firstName
+      ? a.firstName.localeCompare(b.firstName)
+      : b.firstName.localeCompare(a.firstName));
+  }
+
+  /** Méthode pour trier les employés par nom de famille */
+  sortByLastName() {
+    this.sortOrder.lastName = !this.sortOrder.lastName; // Alterner l'ordre
+    this.filteredEmployees.sort((a, b) => this.sortOrder.lastName
+      ? a.lastName.localeCompare(b.lastName)
+      : b.lastName.localeCompare(a.lastName));
+  }
+
+  /** Fonction pour appliquer la pagination */
+  get paginatedEmployees(): Employee[] {
+    return this.filteredEmployees.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
+  }
+
   /** Ouvrir le dialogue pour ajouter ou modifier un employé */
   openEmployeeDialog(employee?: Employee) {
     const dialogRef = this.dialog.open(EmployeeDialogComponent, {
-      data: employee ? employee : null, // Ne pas passer un objet vide
+      data: employee ? employee : null,
       autoFocus: false
     });
-  
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (employee) {
@@ -79,12 +112,11 @@ export class EmployeeDataComponent implements OnInit {
 
   /** Ajouter un employé */
   addEmployee(newEmployee: Employee) {
-    const { employeeId, ...employeeData } = newEmployee; // Exclure employeeId
-
+    const { employeeId, ...employeeData } = newEmployee;
     this.http.post<Employee>(this.apiUrl, employeeData).subscribe({
       next: (addedEmployee) => {
         this.employees.push(addedEmployee);
-        this.filterEmployees(); // Refiltrer après ajout
+        this.filterEmployees();
       },
       error: (error) => {
         console.error('Error adding employee:', error.error.errors || error.message);
@@ -99,7 +131,7 @@ export class EmployeeDataComponent implements OnInit {
         const index = this.employees.findIndex(emp => emp.employeeId === updatedEmployee.employeeId);
         if (index !== -1) {
           this.employees[index] = updatedEmployee;
-          this.filterEmployees(); // Refiltrer après mise à jour
+          this.filterEmployees();
         }
       },
       error: (error) => {
@@ -110,7 +142,7 @@ export class EmployeeDataComponent implements OnInit {
 
   /** Supprimer un employé */
   deleteEmployee(employeeId: number) {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent ,{
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       autoFocus: false
     });
 
@@ -119,7 +151,7 @@ export class EmployeeDataComponent implements OnInit {
         this.http.delete(`${this.apiUrl}/${employeeId}`).subscribe({
           next: () => {
             this.employees = this.employees.filter(emp => emp.employeeId !== employeeId);
-            this.filterEmployees(); // Refiltrer après suppression
+            this.filterEmployees();
           },
           error: (error) => {
             console.error('Error deleting employee:', error);
@@ -129,7 +161,7 @@ export class EmployeeDataComponent implements OnInit {
     });
   }
 
-  /** Fonction de filtrage des employés en fonction de la recherche */
+  /** Filtrer les employés par la barre de recherche */
   filterEmployees() {
     if (this.searchQuery.trim()) {
       this.filteredEmployees = this.employees.filter(emp => 
@@ -146,4 +178,9 @@ export class EmployeeDataComponent implements OnInit {
   onSearchChange() {
     this.filterEmployees();
   }
+
+  /** Afficher un toast */
+
+
+
 }

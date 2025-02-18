@@ -13,48 +13,51 @@
           <label for="firstName" class="form-label">First Name</label>
           <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
           <div *ngIf="employeeForm.get('firstName')?.invalid && employeeForm.get('firstName')?.touched" class="text-danger">
-            <small>First Name is required.</small>
+            <small *ngIf="employeeForm.get('firstName')?.errors?.['required']">First Name is required.</small>
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="lastName" class="form-label">Last Name</label>
           <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
           <div *ngIf="employeeForm.get('lastName')?.invalid && employeeForm.get('lastName')?.touched" class="text-danger">
-            <small>Last Name is required.</small>
+            <small *ngIf="employeeForm.get('lastName')?.errors?.['required']">Last Name is required.</small>
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="email" formControlName="email" required>
           <div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched" class="text-danger">
-            <small>Email is required and must be a valid email address.</small>
+            <small *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="employeeForm.get('email')?.errors?.['email']">Email must be a valid email address.</small>
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="contactNo" class="form-label">Contact No</label>
           <input type="text" class="form-control" id="contactNo" formControlName="contactNo" required>
           <div *ngIf="employeeForm.get('contactNo')?.invalid && employeeForm.get('contactNo')?.touched" class="text-danger">
-            <small>Contact Number is required.</small>
+            <small *ngIf="employeeForm.get('contactNo')?.errors?.['required']">Contact Number is required.</small>
+            <small *ngIf="employeeForm.get('contactNo')?.errors?.['pattern']">Contact Number must be a 10-digit number.</small>
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="city" class="form-label">City</label>
           <input type="text" class="form-control" id="city" formControlName="city" required>
           <div *ngIf="employeeForm.get('city')?.invalid && employeeForm.get('city')?.touched" class="text-danger">
-            <small>City is required.</small>
+            <small *ngIf="employeeForm.get('city')?.errors?.['required']">City is required.</small>
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="address" class="form-label">Address</label>
           <input type="text" class="form-control" id="address" formControlName="address" required>
           <div *ngIf="employeeForm.get('address')?.invalid && employeeForm.get('address')?.touched" class="text-danger">
-            <small>Address is required.</small>
+            <small *ngIf="employeeForm.get('address')?.errors?.['required']">Address is required.</small>
           </div>
         </div>
       </div>
     </form>
   </div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
   <div class="d-flex w-100 justify-content-end">
     <button [disabled]="employeeForm.invalid" (click)="saveEmployee()" class="btn-custom">
@@ -62,5 +65,3 @@
     </button>
   </div>
 </mat-dialog-actions>
-
-

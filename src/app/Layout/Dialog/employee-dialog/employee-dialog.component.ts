@@ -30,13 +30,12 @@ export class EmployeeDialogComponent {
     public dialogRef: MatDialogRef<EmployeeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    // Si un employé est passé en paramètre, pré-remplit le formulaire
     this.employeeForm = this.fb.group({
       employeeId: [data?.employeeId || null],
       firstName: [data?.firstName || '', Validators.required],
       lastName: [data?.lastName || '', Validators.required],
       email: [data?.email || '', [Validators.required, Validators.email]],
-      contactNo: [data?.contactNo || '', Validators.required],
+      contactNo: [data?.contactNo || '', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]], // Validation pour le numéro de téléphone
       city: [data?.city || '', Validators.required],
       address: [data?.address || '', Validators.required]
     });
@@ -44,9 +43,11 @@ export class EmployeeDialogComponent {
 
   // Fonction de sauvegarde de l'employé
   saveEmployee() {
-    if (this.employeeForm.valid) {
-      this.dialogRef.close(this.employeeForm.value);
+    if (this.employeeForm.invalid) {
+      this.employeeForm.markAllAsTouched(); // Marque tous les champs comme touchés
+      return; // Si le formulaire est invalide, arrête l'exécution
     }
+    this.dialogRef.close(this.employeeForm.value); // Ferme la boîte de dialogue et retourne les données du formulaire
   }
 
   // Fonction pour fermer la boîte de dialogue

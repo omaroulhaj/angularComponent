@@ -1,33 +1,29 @@
 <nav class="navbar navbar-expand-lg custom-navbar container-fluid">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-white" href="#">
-        <img src="assets/images/logo.png" alt="Logo" width="50" height="50" class="me-2">
+  <div class="container d-flex justify-content-end align-items-center gap-3">
+    
+    <!-- Icône de notification -->
+    <div class="position-relative">
+      <a href="#" class="text-white">
+        <i class="bi bi-bell-fill fs-4"></i>
+        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">3</span>
       </a>
-  
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/contact">Contact</a>
-          </li>
-        </ul>
-  
-        <button (click)="toggleDarkMode()" class="btn btn-sm btn-light ms-3">
-          <i [class.bi-moon-stars]="!darkMode" [class.bi-brightness-high]="darkMode"></i>
-        </button>
-      </div>
     </div>
-  </nav>
-  
+
+    <!-- Profil utilisateur avec cercle vert -->
+    <div class="dropdown">
+      <!-- Bouton pour déclencher le dropdown -->
+      <button class="d-flex align-items-center text-white text-decoration-none btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="position-relative">
+          <img src="assets/images/profile.png" alt="User" class="rounded-circle" width="45" height="45" style="object-fit: cover;">
+          <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width: 12px; height: 12px;"></span>
+        </div>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
