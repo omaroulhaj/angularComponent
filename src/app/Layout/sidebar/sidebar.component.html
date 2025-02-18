@@ -1,15 +1,12 @@
- <!-- Sidebar -->
  <div class="d-flex" id="wrapper">
-    <!-- Sidebar -->
     <div class="sidebar bg-dark text-white p-3" [ngClass]="{'collapsed': isSidebarCollapsed}">
-        <!-- Bouton de toggle -->
+        
         <div class="sidebar-header text-center mb-3">
             <button class="toggle-btn" (click)="toggleSidebar()">
                 <i class="bi bi-list"></i>
             </button>
         </div>
 
-        <!-- Menu des liens -->
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -31,7 +28,6 @@
             </li>
         </ul>
 
-        <!-- Bouton Logout -->
         <div class="logout text-center mt-auto">
             <a class="nav-link text-danger" href="#">
                 <i class="bi bi-box-arrow-right"></i>

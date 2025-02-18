@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ToastService } from '../Layout/toast/toast.service';
 
 interface Employee {
   employeeId: number;
@@ -39,7 +40,7 @@ interface Employee {
 })
 export class EmployeeDataComponent implements OnInit {
   http = inject(HttpClient);
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private toastService: ToastService) {}
 
   // Variables pour suivre l'ordre de tri
   sortOrder: { firstName: boolean, lastName: boolean } = { firstName: true, lastName: true };
@@ -117,8 +118,11 @@ export class EmployeeDataComponent implements OnInit {
       next: (addedEmployee) => {
         this.employees.push(addedEmployee);
         this.filterEmployees();
+        this.toastService.showToast({ title: 'Success', message: 'Employee added successfully!', type: 'success' });
       },
       error: (error) => {
+        this.toastService.showToast({ title: 'Error', message: 'Failed to add employee.', type: 'error' });
+
         console.error('Error adding employee:', error.error.errors || error.message);
       }
     });
@@ -152,8 +156,12 @@ export class EmployeeDataComponent implements OnInit {
           next: () => {
             this.employees = this.employees.filter(emp => emp.employeeId !== employeeId);
             this.filterEmployees();
+            this.toastService.showToast({ title: 'Success', message: 'Employee deleted successfully!', type: 'success' });
+
           },
           error: (error) => {
+            this.toastService.showToast({ title: 'Error', message: 'Failed to delete employee.', type: 'error' });
+
             console.error('Error deleting employee:', error);
           }
         });

@@ -1,46 +1,30 @@
 import { Component } from '@angular/core';
+import { ToastService } from './toast.service';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-toast',
-  standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule,MatIcon],
   template: `
-    <!-- <div *ngIf="toast$ | async as toast" class="toast-container">
-      <div class="toast" [ngClass]="toast.color">
-        <mat-icon class="icon">{{ toast.icon }}</mat-icon>
-        <span class="toast-message">
-          <strong>{{ toast.title }}</strong>: {{ toast.message }}
-        </span>
+    <div class="toast-container">
+      <div class="toast" *ngFor="let toast of toastService.toasts$ | async" [ngClass]="toast.type">
+        <mat-icon *ngIf="toast.icon">{{ toast.icon }}</mat-icon>
+        <div class="toast-content">
+          <strong>{{ toast.title }}</strong>
+          <p>{{ toast.message }}</p>
+        </div>
+        <button class="close-btn" (click)="toastService.removeToast(toast)">✖</button>
       </div>
-    </div> -->
+    </div>
   `,
-  styles: [`
-    .toast-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    .toast {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #323232;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .toast.success { background: #28a745; }
-    .toast.info { background: #17a2b8; }
-    .toast.warning { background: #ffc107; }
-    .toast.danger { background: #dc3545; }
-    .icon { font-size: 20px; }
-  `]
+  styleUrls: ['./toast.component.css']
 })
-export class ToastComponent {
- 
-}
+  export class ToastComponent {
+    constructor(public toastService: ToastService) {
+      this.toastService.toasts$.subscribe(toasts => {
+        console.log('Toasts reçus:', toasts);
+      });
+    }
+  
+  }
